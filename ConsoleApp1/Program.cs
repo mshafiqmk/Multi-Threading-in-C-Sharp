@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace ConsoleApp1
     {
@@ -10,12 +7,33 @@ namespace ConsoleApp1
         {
         static void Main (string[] args)
             {
-            // The code provided will print ‘Hello World’ to the console.
-            // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
-            Console.WriteLine ("Hello World!");
-            Console.ReadKey ();
 
-            // Go to http://aka.ms/dotnet-get-started-console to continue learning how to build a console app! 
+            Thread thread1 = new Thread (new ThreadStart (Method));
+            Thread thread2 = new Thread (new ThreadStart (NewMethod));
+            thread1.Start ();
+            thread2.Start ();
+
+
+            }
+
+        private static void NewMethod ()
+            {
+            for (int i = 0; ; i++)
+                {
+                if (i==500)
+                    {
+                        Thread.CurrentThread.Abort();
+                    }
+                Console.WriteLine ("NewMethod : " + i);
+                }
+            }
+
+        static void Method ()
+            {
+            for (int i = 0;  ; i++)
+                {
+                Console.WriteLine ("Method : "+i);
+                }
             }
         }
     }
