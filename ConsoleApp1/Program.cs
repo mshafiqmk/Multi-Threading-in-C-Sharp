@@ -8,27 +8,27 @@ namespace ConsoleApp1
         static void Main (string[] args)
             {
 
-            Thread thread1 = new Thread (new ThreadStart (Method));
-            Thread thread2 = new Thread (new ThreadStart (NewMethod));
+            Thread thread1 = new Thread (new ThreadStart (Method1));
+            Thread thread2 = new Thread (new ThreadStart (Method2));
             thread1.Start ();
             thread2.Start ();
 
 
             }
 
-        private static void NewMethod ()
+        private static void Method2 ()
             {
             for (int i = 0; ; i++)
                 {
                 if (i==500)
                     {
-                        Thread.CurrentThread.Abort();
+                        Thread.Sleep(3000);
                     }
                 Console.WriteLine ("NewMethod : " + i);
                 }
             }
 
-        static void Method ()
+        static void Method1 ()
             {
             for (int i = 0;  ; i++)
                 {
